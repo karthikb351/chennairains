@@ -2,6 +2,8 @@
 Crowdsourced list of resources for people affected by the #ChennaiRains.
 
 
-#### List of people and places offering shelter - http://karthikb351.github.io/chennairains/
+#### List of people and places offering shelter - http://chennairains.org/
 
-#### List of contacts incase of emergency - http://karthikb351.github.io/chennairains/contacts/
+#### List of contacts incase of emergency - http://chennairains.org/contacts
+
+### List of Aid available - http://chennairains.org/aid
