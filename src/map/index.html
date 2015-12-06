@@ -22,6 +22,7 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -71,25 +72,33 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">#ChennaiRains Resource Center</a>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-static-top .navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Chennai Rain Relief Resource Center</a>
             </div>
             <!-- /.navbar-header -->
-            <ul class="nav navbar-nav navbar-left">
-              <li><a href="../area-updates">Area updates</a></li>
-              <li><a href="../">Shelters available</a></li>
-              <li><a href="../aid-available">Aid available</a></li>
-              <li><a href="../aid-needed">Aid needed</a></li>
-              <li><a href="../contacts">Useful contacts details</a></li>
-              <li><a href="http://bit.ly/ChennaiRescue">Need rescue?</a></li>
-              <li><a href="http://bit.ly/VolunteerChennai">Volunteer with us</a></li>
-            </ul>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../area-updates">Area updates</a></li>
+                <li><a href="../">Shelters available</a></li>
+                <li><a href="../aid-available">Aid available</a></li>
+                <li><a href="../aid-needed">Aid needed</a></li>
+                <li><a href="../contacts">Useful contacts details</a></li>
+                <li><a href="http://bit.ly/ChennaiRescue">Need rescue?</a></li>
+                <li><a href="http://bit.ly/VolunteerChennai">Volunteer with us</a></li>
+              </ul>
+            </div>
             <!-- /.navbar-top-links -->
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Received rescue requests</h1>
+                    <h3 class="page-header">Received rescue requests</h3>
                     <!-- <div class="well">
                       <div class="input-group input-group-lg">
                         <span class="input-group-addon" id="sizing-addon1">Search</span>
@@ -101,7 +110,7 @@
             </div>
             <!-- /.row -->
             <div class="map_container">
-                <h1 id="loading">Fetching data</h1> 
+                <h1 id="loading">Fetching data</h1>
                 <div id="map_canvas" class="map_canvas"></div>
             </div>
 
@@ -169,7 +178,7 @@
       };
       rows.splice(0,1);
       return rows;
-      
+
     };
 
     var getColumnWidth = function(obj) {
@@ -206,7 +215,7 @@
           lat: parseFloat(row[11]),
           lng: parseFloat(row[12])
         }
-        
+
         var marker = new google.maps.Marker({
           position: pos,
           map: map,
@@ -218,18 +227,18 @@
         +"<b>No of people</b>: "+row[3]+"<br>"
         +"<b>Type of Emergency</b>: "+row[6]+"<br>"
         +"<b>Area</b>: "+row[5]+"<br>"
-        +"<b>Other info</b>: "+row[7]+"<br>"  
+        +"<b>Other info</b>: "+row[7]+"<br>"
         +"<b>Source</b>: "+row[8]+"<br>"
         +"<a href='"+row[13]+"'>>>Google Maps Link</b><br>";
 
         var infowindow = new google.maps.InfoWindow();
 
-        google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){
                 return function() {
                    infowindow.setContent(content);
                    infowindow.open(map,marker);
                 };
-            })(marker,content,infowindow)); 
+            })(marker,content,infowindow));
       };
 
       var uluru = {lat: -25.363, lng: 131.044};
@@ -237,7 +246,7 @@
     }
     function initMap() {
 
-      $.getJSON("../api/rescue.json", function(data) {
+      $.getJSON("http://chennairains.org/api/api/rescue.json", function(data) {
         currentData = data;
         $('#loading').hide();
         plotPoints();
@@ -246,7 +255,7 @@
         console.log()
        $('#loading').text('An error occurred');
      });
-      
+
     }
     </script>
     <<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWTirWLEbCpz3pYNlX6OzVOiqZru0geOk&callback=initMap"></script>

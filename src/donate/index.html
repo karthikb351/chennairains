@@ -22,6 +22,7 @@
 
     <!-- Custom CSS -->
     <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +42,7 @@
 </head>
 
 <body>
-    
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -58,32 +59,41 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">#ChennaiRains Resource Center</a>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-static-top .navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Chennai Rain Relief Resource Center</a>
             </div>
             <!-- /.navbar-header -->
-            <ul class="nav navbar-nav navbar-left">
-              <li><a href="../area-updates">Area updates</a></li>
-              <li><a href="../">Shelters available</a></li>
-              <li><a href="../aid-available">Aid available</a></li>
-              <li><a href="../aid-needed">Aid needed</a></li>
-              <li><a href="../contacts">Useful contacts details</a></li>
-              <li class="active"><a href="#">Donation links</a></li>
-              <li><a href="http://bit.ly/ChennaiRescue">Need rescue?</a></li>
-              <li><a href="http://bit.ly/VolunteerChennai">Volunteer with us</a></li>
-            </ul>
+            <div class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../area-updates">Area updates</a></li>
+                <li><a href="../">Shelters available</a></li>
+                <li><a href="../aid-available">Aid available</a></li>
+                <li><a href="../aid-needed">Aid needed</a></li>
+                <li><a href="../contacts">Useful contacts details</a></li>
+                <li class="active"><a href="#">Donation links</a></li>
+                <li><a href="http://bit.ly/ChennaiRescue">Need rescue?</a></li>
+                <li><a href="http://bit.ly/VolunteerChennai">Volunteer with us</a></li>
+              </ul>
+            </div>
             <!-- /.navbar-top-links -->
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Organizations accepting donations</h1>
+                    <h3 class="page-header">Organizations accepting donations</h3>
                     <h4>Disclaimer: We do not endorse any specific organization or individual seeking donations. We make our best attempt to verify links before posting them to this page, but like all our other pages, this page only aggregates information in an attempt to help those who can help. We are unable to guarantee accountability or overhead percentage for individual donation campaigns.</h4>
                     <div class="well">
                       <div class="input-group input-group-lg">
                         <span class="input-group-addon" id="sizing-addon1">Search</span>
                         <input type="text" class="form-control" placeholder="Eg. USD, INR" id="searchbox" aria-describedby="sizing-addon1">
                       </div>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -154,7 +164,7 @@
         rows[i][1]=row;
       };
       return rows;
-      
+
     };
 
     var getColumnWidth = function(obj) {
@@ -177,7 +187,7 @@
     }
 
     $(document).ready(function() {
-      $.getJSON("../api/donate.json", function(data) {
+      $.getJSON("http://chennairains.org/api/donate.json", function(data) {
         dataSet = data;
         $('#loading').hide();
         var dataTable = $('#dataTables-example').DataTable( {
@@ -188,7 +198,7 @@
         } );
         $("#searchbox").on("keyup search input paste cut", function() {
          dataTable.search(this.value).draw();
-       }); 
+       });
       })
       .error(function() {
        $('#loading').text('An error occurred');
